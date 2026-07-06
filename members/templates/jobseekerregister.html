@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Seeker Registration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.card{
+    width:100%;
+    max-width:600px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+
+    padding:35px;
+    color:white;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:34px;
+    font-weight:700;
+    color:#fff;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.4);
+}
+
+label{
+    display:block;
+    margin:12px 0 8px;
+    font-weight:600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    background:rgba(255,255,255,0.92);
+    outline:none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus{
+    box-shadow:0 0 12px #38bdf8;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+input[type="file"]{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.9);
+    color:#333;
+    cursor:pointer;
+}
+
+input[type="submit"]{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #ff6b6b,
+        #ff9f43,
+        #feca57,
+        #48dbfb,
+        #5f27cd
+    );
+
+    background-size:300% 300%;
+    animation:gradientMove 6s ease infinite;
+    transition:0.3s;
+}
+
+input[type="submit"]:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+
+@keyframes gradientMove{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+.msg{
+    margin-top:15px;
+    text-align:center;
+    color:#fde68a;
+    font-weight:600;
+    min-height:24px;
+}
+
+.links{
+    margin-top:18px;
+    text-align:center;
+}
+
+.links a{
+    color:#7dd3fc;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.links a:hover{
+    color:white;
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+    .card{
+        padding:25px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Job Seeker Registration</h1>
+
+    <form action="{% url 'jobseekerregisterprocess' %}" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Enter your full name" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Create password" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" placeholder="Enter phone number" required>
+
+        <label>Skills</label>
+        <textarea name="skills" placeholder="Example: Python, Django, JavaScript, SQL..." required></textarea>
+
+        <label>Upload Resume</label>
+        <input type="file" name="resume" accept=".pdf,.doc,.docx">
+
+        <input type="submit" value="Create Account">
+
+    </form>
+
+    <div class="msg">
+        {{ msg }}
+    </div>
+
+    <div class="links">
+        <a href="{% url 'home' %}">
+            Back to Login
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.60);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+}
+
+.container{
+
+    width:600px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+.icon{
+
+    text-align:center;
+    font-size:60px;
+    margin-bottom:10px;
+
+}
+
+h2{
+
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
+    font-size:35px;
+
+}
+
+label{
+
+    display:block;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+
+}
+
+input[type=text],
+input[type=number],
+textarea{
+
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    margin-bottom:18px;
+    font-size:16px;
+    background:rgba(255,255,255,0.92);
+
+}
+
+textarea{
+
+    height:120px;
+    resize:none;
+
+}
+
+input:focus,
+textarea:focus{
+
+    box-shadow:0 0 10px #00d4ff;
+
+}
+
+button{
+
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.4s;
+
+}
+
+button:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+    transform:translateY(-3px);
+
+}
+
+.message{
+
+    text-align:center;
+    color:#ffff66;
+    font-size:18px;
+    margin-bottom:20px;
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:20px;
+    text-align:center;
+    color:white;
+    font-size:16px;
+
+}
+
+@media(max-width:650px){
+
+.container{
+
+width:95%;
+padding:25px;
+
+}
+
+h2{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<div class="icon">
+✏️💼
+</div>
+
+{% if msg %}
+<div class="message">
+{{ msg }}
+</div>
+{% endif %}
+
+<form action="{% url 'modifyjobprocess' %}" method="post">
+
+{% csrf_token %}
+
+<h2>Online Job Portal / Recruitment Management System</h2>
+
+<label>Job ID</label>
+<input type="number"
+name="jobid"
+placeholder="Enter Job ID"
+required>
+
+<label>Job Title</label>
+<input type="text"
+name="text1"
+placeholder="Enter Job Title"
+required>
+
+<label>Company Name</label>
+<input type="text"
+name="text2"
+placeholder="Enter Company Name"
+required>
+
+<label>Location</label>
+<input type="text"
+name="text3"
+placeholder="Enter Job Location"
+required>
+
+<label>Salary</label>
+<input type="number"
+name="text4"
+placeholder="Enter Salary"
+required>
+
+<label>Job Description</label>
+
+<textarea
+name="text5"
+placeholder="Enter Job Description"
+required></textarea>
+
+<button type="submit">
+🚀 Update Job
+</button>
+
+</form>
+
+<div class="footer">
+
+<p>🏢 Update Job Information and Manage Recruitment Easily</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

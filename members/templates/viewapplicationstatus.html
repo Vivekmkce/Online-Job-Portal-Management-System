@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Arial,sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.60);
+    padding:40px;
+
+}
+
+.container{
+
+    width:95%;
+    margin:auto;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    font-size:42px;
+    margin-bottom:30px;
+    text-shadow:2px 2px 5px black;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    border-radius:15px;
+    overflow:hidden;
+
+}
+
+thead{
+
+    background:linear-gradient(45deg,#2563eb,#06b6d4);
+
+}
+
+th{
+
+    background:linear-gradient(45deg,#2563eb,#06b6d4);
+    color:white;
+    padding:18px;
+    font-size:18px;
+
+}
+
+td{
+
+    padding:15px;
+    text-align:center;
+    font-size:17px;
+
+}
+
+tbody tr{
+
+    background:rgba(255,255,255,0.92);
+    transition:0.3s;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#eef8ff;
+
+}
+
+tbody tr:hover{
+
+    background:#d9f5ff;
+    transform:scale(1.01);
+
+}
+
+.status{
+
+    color:#16a34a;
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:25px;
+    text-align:center;
+    color:white;
+    font-size:18px;
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+width:100%;
+padding:15px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Application ID</th>
+
+<th>Job Seeker</th>
+<th>Job Title</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.applicationid }}</td>
+
+
+
+<td>👤 {{ app.seeker.name }}</td>
+
+<td>💼 {{ app.job.title }}</td>
+
+<td class="status">
+
+{% if app.status == "Accepted" %}
+
+🟢 {{ app.status }}
+
+{% elif app.status == "Rejected" %}
+
+🔴 {{ app.status }}
+
+{% else %}
+
+🟡 {{ app.status }}
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<div class="footer">
+
+<h3>🚀 Track Your Job Applications and Stay Updated</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

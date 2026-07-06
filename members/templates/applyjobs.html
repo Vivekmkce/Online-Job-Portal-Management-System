@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.60);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+}
+
+.container{
+
+    width:550px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+.icon{
+
+    text-align:center;
+    font-size:60px;
+    margin-bottom:10px;
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+    font-size:38px;
+
+}
+
+label{
+
+    display:block;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+
+}
+
+input[type=text]{
+
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    margin-bottom:18px;
+    font-size:16px;
+    background:rgba(255,255,255,0.92);
+
+}
+
+input[readonly]{
+
+    background:rgba(255,255,255,0.78);
+    color:#1f2937;
+    cursor:not-allowed;
+
+}
+
+input[type=text]:focus{
+
+    box-shadow:0 0 10px #00d4ff;
+
+}
+
+input[type=submit]{
+
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.4s;
+
+}
+
+input[type=submit]:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+    transform:translateY(-3px);
+
+}
+
+.message{
+
+    margin-top:20px;
+    text-align:center;
+    color:#ffff66;
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:20px;
+    text-align:center;
+    color:white;
+    font-size:16px;
+
+}
+
+@media(max-width:600px){
+
+.container{
+
+width:95%;
+padding:25px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<div class="icon">
+📄
+</div>
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<form action="{% url 'applyjobprocess' %}" method="post">
+
+{% csrf_token %}
+
+<label>Job Seeker ID</label>
+<input type="text"
+name="seekerid"
+placeholder="Enter Job Seeker ID"
+required>
+
+<label>Job Seeker Name</label>
+<input type="text"
+name="seekername"
+placeholder="Enter Your Name"
+required>
+
+<label>Job ID</label>
+<input type="text"
+name="jobid"
+value="{{ jobid|default:'' }}"
+placeholder="Enter Job ID"
+required>
+
+<label>Job Title</label>
+<input type="text"
+name="jobtitle"
+value="{{ jobtitle|default:'' }}"
+placeholder="Enter Job Title"
+readonly>
+
+<label>Company Name</label>
+<input type="text"
+name="company"
+value="{{ company|default:'' }}"
+placeholder="Enter Company Name"
+readonly>
+
+<input type="submit" value="🚀 Apply Now">
+</form>
+
+{% if msg %}
+
+<div class="message">
+
+{{ msg }}
+
+</div>
+
+{% endif %}
+
+<div class="footer">
+
+<p>💼 Take the Next Step Towards Your Dream Career</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

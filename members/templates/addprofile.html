@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.container{
+
+    width:450px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0px 10px 25px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+    font-size:32px;
+
+}
+
+table{
+
+    width:100%;
+
+}
+
+td{
+
+    padding:10px;
+    color:white;
+    font-size:18px;
+
+}
+
+input[type=text],
+input[type=email]{
+
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+    background:rgba(255,255,255,0.9);
+
+}
+
+input[type=text]:focus,
+input[type=email]:focus{
+
+    box-shadow:0px 0px 10px #00e5ff;
+
+}
+
+input[type=submit]{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+    transition:0.4s;
+
+}
+
+input[type=submit]:hover{
+
+    transform:translateY(-3px);
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+
+}
+
+.footer{
+
+    text-align:center;
+    color:white;
+    margin-top:20px;
+    font-size:16px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#7f00ff,#e100ff);
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+
+}
+
+.error-message{
+
+    margin-bottom:20px;
+    padding:12px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.2);
+    color:#ffdddd;
+    text-align:center;
+    font-weight:bold;
+
+}
+
+.file-hint{
+
+    margin-top:8px;
+    font-size:14px;
+    color:#f5f5f5;
+
+}
+
+@media(max-width:500px){
+
+.container{
+
+width:90%;
+padding:20px;
+
+}
+
+h1{
+
+font-size:26px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<a class="back-btn" href="{% url 'dashboard' %}">← Back to Dashboard</a>
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+{% if error_message %}
+<div class="error-message">{{ error_message }}</div>
+{% endif %}
+
+<form action="{% url 'addprofileprocess' %}" method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<table>
+
+<tr>
+<td>Name</td>
+<td><input type="text" name="name" placeholder="Enter Full Name"></td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td><input type="email" name="email" placeholder="Enter Email"></td>
+</tr>
+
+<tr>
+<td>Phone</td>
+<td><input type="text" name="phone" placeholder="Enter Phone Number"></td>
+</tr>
+
+<tr>
+<td>Skills</td>
+<td><input type="text" name="skills" placeholder="Enter your skills"></td>
+</tr>
+
+<tr>
+<td>Resume (PDF)</td>
+<td>
+    <input type="file" name="resume" id="resume-input" accept="application/pdf">
+    <div class="file-hint" id="resume-hint">Only PDF files up to 2 MB are allowed.</div>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<input type="submit" value="Save Profile">
+</td>
+</tr>
+
+</table>
+
+</form>
+
+<div class="footer">
+<p>🚀 Create Your Professional Job Seeker Profile</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+const resumeInput = document.getElementById('resume-input');
+const resumeHint = document.getElementById('resume-hint');
+
+resumeInput.addEventListener('change', function () {
+    const file = resumeInput.files[0];
+
+    if (!file) {
+        resumeHint.textContent = 'Only PDF files up to 2 MB are allowed.';
+        resumeHint.style.color = '#f5f5f5';
+        return;
+    }
+
+    const isPdf = file.name.toLowerCase().endsWith('.pdf') && file.type === 'application/pdf';
+    const maxSize = 2 * 1024 * 1024;
+
+    if (!isPdf) {
+        resumeHint.textContent = 'Please choose a PDF file only.';
+        resumeHint.style.color = '#ffb3b3';
+        resumeInput.value = '';
+        return;
+    }
+
+    if (file.size > maxSize) {
+        resumeHint.textContent = 'File size must be 2 MB or less.';
+        resumeHint.style.color = '#ffb3b3';
+        resumeInput.value = '';
+        return;
+    }
+
+    resumeHint.textContent = 'Selected: ' + file.name;
+    resumeHint.style.color = '#d7ffd7';
+});
+</script>
+
+</body>
+</html>
+

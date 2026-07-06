@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.container{
+
+    width:900px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0px 10px 30px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    margin-bottom:35px;
+    font-size:40px;
+
+}
+
+.menu{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+}
+
+.menu a{
+
+    text-decoration:none;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    padding:25px;
+    border-radius:15px;
+    transition:0.4s;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.3);
+
+}
+
+.menu a:nth-child(1){
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+}
+
+.menu a:nth-child(2){
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+}
+
+.menu a:nth-child(3){
+background:linear-gradient(45deg,#11998e,#38ef7d);
+}
+
+.menu a:nth-child(4){
+background:linear-gradient(45deg,#7f00ff,#e100ff);
+}
+
+.menu a:nth-child(5){
+background:linear-gradient(45deg,#f7971e,#ffd200);
+}
+
+.menu a:nth-child(6){
+background:linear-gradient(45deg,#00b09b,#96c93d);
+}
+
+.menu a:nth-child(7){
+background:linear-gradient(45deg,#fc466b,#3f5efb);
+}
+
+.menu a:nth-child(8){
+background:linear-gradient(45deg,#2193b0,#6dd5ed);
+}
+
+.menu a:hover{
+
+    transform:translateY(-8px) scale(1.05);
+    box-shadow:0px 10px 20px rgba(255,255,255,0.3);
+
+}
+
+.logout-wrap{
+
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+
+}
+
+.logout-btn{
+
+    display:inline-block;
+    text-decoration:none;
+    background:linear-gradient(45deg,#ff6a00,#ee0979);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    padding:14px 28px;
+    border-radius:999px;
+    box-shadow:0px 8px 18px rgba(0,0,0,0.3);
+    transition:0.3s;
+
+}
+
+.logout-btn:hover{
+
+    transform:translateY(-4px);
+    box-shadow:0px 12px 24px rgba(0,0,0,0.35);
+
+}
+
+.footer{
+
+    text-align:center;
+    color:white;
+    margin-top:30px;
+    font-size:18px;
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+width:95%;
+padding:20px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<div class="menu">
+
+<a href="{% url 'addprofile' %}">➕ Add Profile</a>
+
+<a href="{% url 'showprofile' %}">👤 Show Profile</a>
+
+<a href="{% url 'searchprofile' %}">🔍 Search Profile</a>
+
+<a href="{% url 'modifyprofile' %}">✏️ Modify Profile</a>
+
+<a href="{% url 'viewjobs' %}">💼 View Jobs</a>
+
+<a href="{% url 'viewapplicationstatus' %}">📊 View Application Status</a>
+
+</div>
+
+<div class="logout-wrap">
+
+<a class="logout-btn" href="{% url 'jobseekerlogout' %}">🚪 Logout</a>
+
+</div>
+
+<div class="footer">
+
+<p>Find Your Dream Career | Online Job Portal / Recruitment Management System</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

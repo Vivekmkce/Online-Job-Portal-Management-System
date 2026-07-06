@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    padding:50px;
+
+}
+
+.container{
+
+    width:98%;
+    margin:auto;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:38px 34px;
+    box-shadow:0px 10px 30px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+    font-size:40px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+    table-layout:fixed;
+
+}
+
+thead{
+
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+
+}
+
+thead th{
+
+    color:white;
+    padding:20px 22px;
+    font-size:18px;
+    border:1px solid rgba(255,255,255,0.18);
+
+}
+
+tbody tr{
+
+    background:rgba(255,255,255,0.85);
+    transition:0.3s;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:rgba(240,248,255,0.95);
+
+}
+
+tbody tr:hover{
+
+    background:#c8f7ff;
+    transform:none;
+
+}
+
+td{
+
+    padding:18px 22px;
+    text-align:center;
+    font-size:17px;
+    word-break:break-word;
+    border:1px solid rgba(0,0,0,0.08);
+
+}
+
+td:nth-child(1),
+th:nth-child(1){
+
+    width:10%;
+
+}
+
+td:nth-child(2),
+th:nth-child(2){
+
+    width:14%;
+
+}
+
+td:nth-child(3),
+th:nth-child(3){
+
+    width:22%;
+
+}
+
+td:nth-child(4),
+th:nth-child(4){
+
+    width:12%;
+
+}
+
+td:nth-child(5),
+th:nth-child(5){
+
+    width:18%;
+
+}
+
+td:nth-child(6),
+th:nth-child(6){
+
+    width:14%;
+
+}
+
+td:nth-child(7),
+th:nth-child(7){
+
+    width:12%;
+
+}
+
+a{
+
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+    padding:10px 18px;
+    border-radius:24px;
+    font-weight:bold;
+    transition:0.3s;
+    display:inline-block;
+    min-width:110px;
+
+}
+
+a:hover{
+
+    background:linear-gradient(45deg,#00b09b,#96c93d);
+
+}
+
+.noresume{
+
+    color:red;
+    font-weight:bold;
+    display:inline-block;
+    min-width:110px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#7f00ff,#e100ff);
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+
+}
+
+@media(max-width:900px){
+
+table{
+
+    display:block;
+    overflow-x:auto;
+
+}
+
+h1{
+
+    font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<a class="back-btn" href="{% url 'dashboard' %}">← Back to Dashboard</a>
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Seeker ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Skills</th>
+<th>Resume</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for profile in username %}
+
+<tr>
+
+<td>{{ profile.seekerid }}</td>
+<td>{{ profile.name }}</td>
+<td>{{ profile.email }}</td>
+<td>{{ profile.phone }}</td>
+<td>{{ profile.skills }}</td>
+
+<td>
+
+{% if profile.resume %}
+
+<a href="{{ profile.resume.url }}" target="_blank">
+📄 View Resume
+</a>
+
+{% else %}
+
+<span class="noresume">No Resume</span>
+
+{% endif %}
+
+</td>
+<td><a href="{% url 'deleteprofile' profile.seekerid %}">Delete</a></td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+
+</div>
+
+</div>
+
+</body>
+</html>
+

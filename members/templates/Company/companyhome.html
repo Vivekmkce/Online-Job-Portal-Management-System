@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+}
+
+.container{
+
+    width:900px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0px 10px 30px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    font-size:42px;
+    margin-bottom:35px;
+
+}
+
+.menu{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+}
+
+.menu a{
+
+    text-decoration:none;
+    text-align:center;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    padding:22px;
+    border-radius:15px;
+    transition:0.4s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+}
+
+.menu a:nth-child(1){
+
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+
+}
+
+.menu a:nth-child(2){
+
+    background:linear-gradient(45deg,#2193b0,#6dd5ed);
+
+}
+
+.menu a:nth-child(3){
+
+    background:linear-gradient(45deg,#00b09b,#96c93d);
+
+}
+
+.menu a:nth-child(4){
+
+    background:linear-gradient(45deg,#7f00ff,#e100ff);
+
+}
+
+.menu a:nth-child(5){
+
+    background:linear-gradient(45deg,#f7971e,#ffd200);
+
+}
+
+.menu a:nth-child(6){
+
+    background:linear-gradient(45deg,#fc466b,#3f5efb);
+
+}
+
+.menu a:nth-child(7){
+
+    background:linear-gradient(45deg,#11998e,#38ef7d);
+
+}
+
+.menu a:nth-child(8){
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+
+}
+
+.logout-btn{
+
+    background:linear-gradient(45deg,#ef4444,#f97316) !important;
+
+}
+
+.menu a:hover{
+
+    transform:translateY(-8px) scale(1.05);
+    box-shadow:0 10px 20px rgba(255,255,255,0.4);
+
+}
+
+.footer{
+
+    text-align:center;
+    color:white;
+    margin-top:30px;
+    font-size:18px;
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+    width:95%;
+    padding:25px;
+
+}
+
+h1{
+
+    font-size:32px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<div class="menu">
+
+<a href="{% url 'addjob' %}">➕ Add Job</a>
+
+<a href="{% url 'showjobs' %}">📋 Show Jobs</a>
+
+<a href="{% url 'searchjobs' %}">🔍 Search Job</a>
+
+<a href="{% url 'modifyjob' %}">✏️ Modify Job</a>
+
+<a href="{% url 'deletejob' %}">🗑 Delete Job</a>
+
+<a href="{% url 'viewapplications' %}">📄 View Applications</a>
+
+<a class="logout-btn" href="{% url 'companylogout' %}">🚪 Logout</a>
+
+</div>
+
+<div class="footer">
+
+<p>💼 Recruit Top Talent | Online Job Portal / Recruitment Management System</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

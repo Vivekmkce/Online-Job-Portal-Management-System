@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    padding:40px;
+
+}
+
+.container{
+
+    width:95%;
+    margin:auto;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0px 10px 30px rgba(0,0,0,0.5);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    font-size:42px;
+    margin-bottom:30px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+
+}
+
+thead{
+
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+
+}
+
+th{
+
+    color:white;
+    padding:18px;
+    font-size:18px;
+    text-align:center;
+
+}
+
+td{
+
+    padding:15px;
+    text-align:center;
+    font-size:16px;
+    background:rgba(255,255,255,0.92);
+
+}
+
+tbody tr:nth-child(even) td{
+
+    background:#f0f9ff;
+
+}
+
+tbody tr:hover td{
+
+    background:#c9f7ff;
+
+}
+
+.status{
+
+    font-weight:bold;
+    color:#047857;
+
+}
+
+.resume-link{
+
+    color:#1d4ed8;
+    font-weight:bold;
+    text-decoration:none;
+
+}
+
+.resume-link:hover{
+
+    text-decoration:underline;
+
+}
+
+.action-group{
+
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    align-items:center;
+
+}
+
+.action-form{
+
+    display:inline;
+
+}
+
+.action-btn{
+
+    border:none;
+    border-radius:18px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    transition:0.25s;
+    min-width:180px;
+    font-size:16px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.18);
+
+}
+
+.accept-btn{
+
+    background:linear-gradient(45deg,#22c55e,#14b8a6);
+
+}
+
+.reject-btn{
+
+    background:linear-gradient(45deg,#ff4d4d,#ec4899);
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-2px) scale(1.01);
+    box-shadow:0 10px 20px rgba(0,0,0,0.22);
+
+}
+
+.accept-btn:hover{
+
+    background:linear-gradient(45deg,#16a34a,#0f766e);
+
+}
+
+.reject-btn:hover{
+
+    background:linear-gradient(45deg,#ff2d55,#db2777);
+
+}
+
+.footer{
+
+    text-align:center;
+    color:white;
+    margin-top:25px;
+    font-size:17px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#7f00ff,#e100ff);
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+width:100%;
+padding:15px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<a class="back-btn" href="{% url 'companydashboard' %}">← Back to Homepage</a>
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Applicant Name</th>
+<th>Job Title</th>
+<th>Status</th>
+<th>Resume Link</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for application in applications %}
+
+<tr>
+
+<td>{{ application.seeker.name }}</td>
+<td>{{ application.job.title }}</td>
+<td class="status">{{ application.status }}</td>
+<td>
+    {% if application.seeker.resume %}
+        <a class="resume-link" href="{{ application.seeker.resume.url }}" target="_blank">View Resume</a>
+    {% else %}
+        No Resume
+    {% endif %}
+</td>
+<td>
+    <div class="action-group">
+        <form class="action-form" action="{% url 'acceptapplicationinline' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="applicationid" value="{{ application.applicationid }}">
+            <button class="action-btn accept-btn" type="submit">✅ Accept Application</button>
+        </form>
+        <form class="action-form" action="{% url 'rejectapplicationinline' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="applicationid" value="{{ application.applicationid }}">
+            <button class="action-btn reject-btn" type="submit">❌ Reject Application</button>
+        </form>
+    </div>
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="5">No applications found.</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<div class="footer">
+
+<p>🚀 Review job applications and open resumes directly</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

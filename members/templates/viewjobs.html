@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(15,23,42,0.65);
+    padding:40px;
+
+}
+
+.container{
+
+    width:95%;
+    margin:auto;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.4);
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    font-size:45px;
+    margin-bottom:30px;
+    text-shadow:2px 2px 5px black;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+
+}
+
+thead{
+
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+
+}
+
+th{
+
+    color:white;
+    padding:18px;
+    font-size:18px;
+    text-transform:uppercase;
+
+}
+
+th.action-col,
+td.action-col{
+
+    width:140px;
+
+}
+
+td{
+
+    padding:15px;
+    text-align:center;
+    font-size:16px;
+
+}
+
+tbody tr{
+
+    background:rgba(255,255,255,0.92);
+    transition:0.4s;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#eef8ff;
+
+}
+
+tbody tr:hover{
+
+    background:#d8f3ff;
+    transform:scale(1.01);
+
+}
+
+.salary{
+
+    color:#16a34a;
+    font-weight:bold;
+    font-size:18px;
+
+}
+
+.company{
+
+    color:#1d4ed8;
+    font-weight:bold;
+
+}
+
+.apply-btn{
+
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:999px;
+    background:linear-gradient(45deg,#0f766e,#22c55e);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+
+}
+
+.apply-btn:hover{
+
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(15,118,110,0.25);
+
+}
+
+.footer{
+
+    margin-top:25px;
+    text-align:center;
+    color:white;
+    font-size:18px;
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+width:100%;
+padding:15px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Job ID</th>
+<th>Job Title</th>
+<th>Company</th>
+<th>Location</th>
+<th>Salary</th>
+<th>Description</th>
+<th class="action-col">Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>{{ job.jobid }}</td>
+
+<td><strong>{{ job.title }}</strong></td>
+
+<td class="company">{{ job.company }}</td>
+
+<td>📍 {{ job.location }}</td>
+
+<td class="salary">₹ {{ job.salary }}</td>
+
+<td>{{ job.description }}</td>
+
+<td class="action-col">
+
+<a class="apply-btn" href="{% url 'applyjob' %}?jobid={{ job.jobid }}">Apply Now</a>
+
+</td>
+
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<div class="footer">
+
+<h3>🚀 Find Your Dream Job and Build Your Future</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

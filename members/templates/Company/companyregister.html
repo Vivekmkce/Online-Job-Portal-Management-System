@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Company Registration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.card{
+    width:100%;
+    max-width:550px;
+    padding:35px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    color:white;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:34px;
+    font-weight:700;
+    color:#fff;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.4);
+}
+
+label{
+    display:block;
+    margin:12px 0 8px;
+    font-weight:600;
+    color:white;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    margin-bottom:10px;
+    background:rgba(255,255,255,0.92);
+}
+
+input:focus{
+    box-shadow:0 0 12px #38bdf8;
+}
+
+input[type="submit"]{
+    margin-top:15px;
+    border:none;
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #ff6b6b,
+        #ff9f43,
+        #feca57,
+        #48dbfb,
+        #5f27cd
+    );
+
+    background-size:300% 300%;
+    animation:gradientMove 6s ease infinite;
+    transition:0.3s;
+}
+
+input[type="submit"]:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+
+@keyframes gradientMove{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+.msg{
+    margin-top:12px;
+    text-align:center;
+    color:#ffe082;
+    font-weight:600;
+    min-height:24px;
+}
+
+.links{
+    margin-top:18px;
+    text-align:center;
+}
+
+.links a{
+    color:#7dd3fc;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.links a:hover{
+    color:white;
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+    .card{
+        padding:25px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Company Registration</h1>
+
+    <form action="{% url 'companyregisterprocess' %}" method="post">
+        {% csrf_token %}
+
+        <label>Company Name</label>
+        <input type="text" name="companyname" placeholder="Enter company name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter email address" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+
+        <label>Location</label>
+        <input type="text" name="location" placeholder="Enter company location" required>
+
+        <input type="submit" value="Register Company">
+    </form>
+
+    <div class="msg">
+        {{ msg }}
+    </div>
+
+    <div class="links">
+        <a href="{% url 'companylogin' %}">
+            Back to Company Login
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

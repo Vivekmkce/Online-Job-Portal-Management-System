@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Job Portal / Recruitment Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    background:url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+
+}
+
+.overlay{
+
+    width:100%;
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.login-box{
+
+    width:420px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.logo{
+
+    text-align:center;
+    font-size:60px;
+    margin-bottom:10px;
+
+}
+
+h1{
+
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+    font-size:35px;
+
+}
+
+label{
+
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+input[type=email],
+input[type=password]{
+
+    width:100%;
+    padding:13px;
+    margin-top:8px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+    background:rgba(255,255,255,0.9);
+
+}
+
+input[type=email]:focus,
+input[type=password]:focus{
+
+    box-shadow:0 0 10px #00d4ff;
+
+}
+
+input[type=submit]{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#0072ff,#00c6ff);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.4s;
+
+}
+
+input[type=submit]:hover{
+
+    background:linear-gradient(45deg,#ff512f,#dd2476);
+    transform:translateY(-3px);
+
+}
+
+.message{
+
+    text-align:center;
+    color:#ffff66;
+    margin-top:20px;
+    font-size:18px;
+
+}
+
+.footer{
+
+    text-align:center;
+    color:white;
+    margin-top:25px;
+    font-size:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="login-box">
+
+<div class="logo">
+🏢
+</div>
+
+<h1>Online Job Portal / Recruitment Management System</h1>
+
+<form action="{% url 'companyloginprocess' %}" method="post">
+
+{% csrf_token %}
+
+<label>Email Address</label>
+
+<input type="email"
+name="email"
+placeholder="Enter Company Email"
+required>
+
+<label>Password</label>
+
+<input type="password"
+name="password"
+placeholder="Enter Password"
+required>
+
+<input type="submit" value="Login">
+
+</form>
+
+<div class="message">
+
+{{ msg }}
+
+</div>
+
+<div class="footer">
+
+<p><a href="{% url 'companyregister' %}" style="color:#ffff66;text-decoration:none;font-weight:bold;">Register as a company</a></p>
+
+</div>
+
+<div class="footer">
+
+<p>💼 Employer Portal | Hire the Best Talent</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
