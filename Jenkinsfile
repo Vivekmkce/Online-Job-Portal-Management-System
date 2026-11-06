@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh 'python3 -m venv venv && . venv/bin/activate && pip install django'
+                bat 'python -m venv venv'
+                bat 'venv\\Scripts\\python.exe -m pip install django'
             }
         }
         stage('Check') {
             steps {
-                sh '. venv/bin/activate && python manage.py check'
+                bat 'venv\\Scripts\\python.exe manage.py check'
             }
         }
     }
