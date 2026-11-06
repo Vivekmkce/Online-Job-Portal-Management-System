@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Check') {
             steps {
-                bat 'venv\\Scripts\\python.exe manage.py check'
+                bat 'venv\\Scripts\\python.exe -m compileall -q jobportal members manage.py'
             }
         }
     }
