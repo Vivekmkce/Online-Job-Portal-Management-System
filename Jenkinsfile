@@ -5,7 +5,7 @@ pipeline {
         stage('Setup') {
             steps {
                 bat 'python -m venv venv'
-                bat 'venv\\Scripts\\python.exe -m pip install django'
+                bat 'venv\\Scripts\\python.exe -m pip install django mysqlclient'
             }
         }
         stage('Check') {
